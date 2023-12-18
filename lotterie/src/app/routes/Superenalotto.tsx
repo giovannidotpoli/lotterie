@@ -1,43 +1,43 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectEstrazioniMilionDay, fetchData } from '../redux/lotterieSlice';
+import { selectEstrazioniSuperEnalotto, fetchData } from '../redux/lotterieSlice';
 import { AppDispatch } from '../redux/store';
 import Table from 'react-bootstrap/Table';
 import YearSelector from '../components/YearSelector';
 
-const Milionday = () => {
+const Superenalotto = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const estrazioni = useSelector(selectEstrazioniMilionDay);
+    const estrazioni = useSelector(selectEstrazioniSuperEnalotto);
     const thisYear = new Date().getFullYear();
     
     const selectDate = (evt:any) => {
-        dispatch(fetchData({type:'milionday',year:String(evt.target.value)}));
+        dispatch(fetchData({type:'superenalotto',year:String(evt.target.value)}));
     }
 
     useEffect(() => {
-        dispatch(fetchData({type:'milionday',year: thisYear}));
+        dispatch(fetchData({type:'superenalotto',year: thisYear}));
     }, [thisYear,dispatch]);
 
     return (
         <>
-            <YearSelector end={2018} selectDate={selectDate} />
-            <Table striped bordered hover className='table_lotto w-60 m-auto'>
+            <YearSelector end={1997} selectDate={selectDate} />
+            <Table striped bordered hover className='table_lotto w-50 m-auto'>
                 <thead>
                     <tr>
                         <th>Data</th>
-                        <th>Orario</th>
                         <th>Numeri estratti</th>
-                        <th>Numeri Extra</th>
+                        <th>Jolly</th>
+                        <th>Superstar</th>
                     </tr>
                 </thead>
                 <tbody>
                     {estrazioni.map((el:any) =>  {
                         return(
-                            <tr key={`${el.data}${el.orario}`}>
+                            <tr key={`${el.data}`}>
                                 <td>{el.data}</td>
-                                <td>{el.orario}</td>
                                 <td>{el.numeri}</td>
-                                <td>{el.extra}</td>
+                                <td>{el.jolly}</td>
+                                <td>{el.superstar}</td>
                              </tr>
                         )
                         })}
@@ -47,4 +47,4 @@ const Milionday = () => {
     );
 }
 
-export default Milionday;
+export default Superenalotto;

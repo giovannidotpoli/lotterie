@@ -39,6 +39,7 @@ export const lotterieSlice = createSlice({
         state.status = 'loading';
         state.lotto = [];
         state.milionday = [];
+        state.superenalotto = [];
       })
       .addCase(fetchData.fulfilled, (state, action) => {
         state.status = 'idle';
@@ -49,6 +50,9 @@ export const lotterieSlice = createSlice({
             break;
           case 'milionday':
             state.milionday = action.payload.data;
+            break;
+          case 'superenalotto':
+            state.superenalotto = action.payload.data;
             break;
         }
       })

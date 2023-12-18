@@ -6,6 +6,7 @@ import Header from './app/components/Header';
 import { store } from './app/redux/store';
 import { Provider } from 'react-redux';
 import Milionday from './app/routes/Milionday';
+import Superenalotto from './app/routes/Superenalotto';
 
 function App() {
   return (
@@ -33,6 +34,15 @@ function App() {
                 <>
                   <Header />
                   <Milionday />
+                </>
+              }
+            />
+            <Route
+              path="/superenalotto"
+              element={
+                <>
+                  <Header />
+                  <Superenalotto />
                 </>
               }
             />

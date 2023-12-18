@@ -20,7 +20,7 @@ const Lotto = () => {
     }, [thisYear,dispatch]);
 
     useEffect(() => {
-        let prevConcorso = 1;
+        let prevConcorso = estrazioni[0]?.concorso;
         const arr:any = [];
         estrazioni.forEach((el:any) => {
             if(el.concorso !== prevConcorso) {

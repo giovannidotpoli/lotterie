@@ -1,10 +1,12 @@
 @import '~bootstrap/scss/bootstrap';
 
-.half_width {
-    width: 50%;
+.navbar-nav .nav-link.active {
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
 }
 
 .table_lotto {
+    th,
     td {
         text-align: center;
         height: 40px;
