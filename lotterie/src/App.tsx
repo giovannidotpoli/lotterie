@@ -5,6 +5,8 @@ import Lotto from './app/routes/Lotto';
 import Header from './app/components/Header';
 import { store } from './app/redux/store';
 import { Provider } from 'react-redux';
+import Milionday from './app/routes/Milionday';
+
 function App() {
   return (
     <Provider store={store}>
@@ -22,6 +24,15 @@ function App() {
                 <>
                   <Header />
                   <Lotto />
+                </>
+              }
+            />
+            <Route
+              path="/milionday"
+              element={
+                <>
+                  <Header />
+                  <Milionday />
                 </>
               }
             />

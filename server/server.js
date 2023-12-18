@@ -16,15 +16,28 @@ const connection =   mysql.createPool({
     port: 3306,
 });
 
+
 app.post('/lotto', async(req, res) => {
     let year = req.body.year;
     if(!year) {
         year = new Date().getFullYear();
     }
-    const sql = `SELECT DISTINCT concorso,DATE_FORMAT(data,"%d/%m/%Y") as data,ruota,GROUP_CONCAT(numero SEPARATOR ' - ') as numeri FROM lotto WHERE data LIKE '${year}%' GROUP BY data,ruota ORDER BY id ASC`;
+    const sql = `SELECT DISTINCT concorso,DATE_FORMAT(data,"%d/%m/%Y") as data,ruota,GROUP_CONCAT(numero SEPARATOR ' - ') as numeri FROM lotto WHERE data LIKE '${year}%' GROUP BY data,ruota ORDER BY id DESC`;
     const [rows] = await connection.execute(sql);
     res.send(rows);
 });
+
+app.post('/milionday', async(req, res) => {  
+    let year = req.body.year;
+    if(!year) {
+        year = new Date().getFullYear();
+    }
+    let sql = `SELECT id,numeri,extra,orario, DATE_FORMAT(data,"%d/%m/%Y") as data FROM milionday WHERE data LIKE '${year}%' ORDER BY id DESC`;
+    const [rows] = await connection.execute(sql);
+    res.send(rows);
+});
+
+
 
 app.post('/lottolast', (req, res) => {  
     const pag = req.body.pag;
@@ -109,15 +122,6 @@ app.post('/superenalotto', (req, res) => {
     res.send(arr);
 });
 
-app.post('/milionday', (req, res) => {  
-    const pag = req.body.pag;
-    let sql = `SELECT id,numeri, DATE_FORMAT(data_estrazione,"%d/%m/%Y") as data_estrazione FROM milionday WHERE data_estrazione LIKE '%${pag}%' ORDER BY id DESC LIMIT 365`;
-    const results = connection.query(sql);
-    const arr = [];
-    results.forEach(item => {
-        arr.push({'data_estrazione':item.data_estrazione, 'concorso': item.concorso, numeri: item.numeri});
-    });
-    res.send(arr);
-});
+
 
 app.listen(port, () => console.log(`Server Started`));

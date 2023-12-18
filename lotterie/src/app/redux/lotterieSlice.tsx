@@ -37,6 +37,8 @@ export const lotterieSlice = createSlice({
 
       .addCase(fetchData.pending, (state) => {
         state.status = 'loading';
+        state.lotto = [];
+        state.milionday = [];
       })
       .addCase(fetchData.fulfilled, (state, action) => {
         state.status = 'idle';
@@ -44,6 +46,9 @@ export const lotterieSlice = createSlice({
         switch(type) {
           case 'lotto':
             state.lotto = action.payload.data;
+            break;
+          case 'milionday':
+            state.milionday = action.payload.data;
             break;
         }
       })
