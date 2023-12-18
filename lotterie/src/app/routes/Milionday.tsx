@@ -4,6 +4,7 @@ import { selectEstrazioniMilionDay, fetchData } from '../redux/lotterieSlice';
 import { AppDispatch } from '../redux/store';
 import Table from 'react-bootstrap/Table';
 import YearSelector from '../components/YearSelector';
+import { startMilionDay } from '../config';
 
 const Milionday = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -20,7 +21,7 @@ const Milionday = () => {
 
     return (
         <>
-            <YearSelector end={2018} selectDate={selectDate} />
+            <YearSelector end={startMilionDay} selectDate={selectDate} />
             <Table striped bordered hover className='table_lotto w-60 m-auto'>
                 <thead>
                     <tr>

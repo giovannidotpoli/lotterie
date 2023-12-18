@@ -4,6 +4,7 @@ import { selectEstrazioniSuperEnalotto, fetchData } from '../redux/lotterieSlice
 import { AppDispatch } from '../redux/store';
 import Table from 'react-bootstrap/Table';
 import YearSelector from '../components/YearSelector';
+import { startSuperenalotto } from '../config';
 
 const Superenalotto = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -20,7 +21,7 @@ const Superenalotto = () => {
 
     return (
         <>
-            <YearSelector end={1997} selectDate={selectDate} />
+            <YearSelector end={startSuperenalotto} selectDate={selectDate} />
             <Table striped bordered hover className='table_lotto w-50 m-auto'>
                 <thead>
                     <tr>

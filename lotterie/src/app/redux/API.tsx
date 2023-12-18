@@ -1,4 +1,4 @@
-import ipAddressServer from '../config';
+import { ipAddressServer } from '../config';
 
 interface IAction {
   type: string;
